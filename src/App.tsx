@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -31,7 +30,7 @@ import Dashboard from "./pages/delivery/Dashboard";
 import Packages from "./pages/delivery/Packages";
 import Routes from "./pages/delivery/Routes";
 import History from "./pages/delivery/History";
-import Profile as DeliveryProfile from "./pages/delivery/Profile";
+import DeliveryProfile from "./pages/delivery/Profile";
 
 const App = () => {
   // Create a client
