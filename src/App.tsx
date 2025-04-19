@@ -9,6 +9,13 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Cart from "./pages/cart/Cart";
 import ProductsView from "./pages/products/ProductsView";
+import ProductDetails from "./pages/products/ProductDetails";
+import Checkout from "./pages/checkout/Checkout";
+import Profile from "./pages/profile/Profile";
+import Wishlist from "./pages/wishlist/Wishlist";
+import RecentlyViewed from "./pages/history/RecentlyViewed";
+import OrderTracking from "./pages/orders/OrderTracking";
+import Invoice from "./pages/orders/Invoice";
 
 // Admin imports
 import AdminDashboard from "./pages/admin/Dashboard";
@@ -31,6 +38,13 @@ const App = () => {
             <Route path="/" element={<Index />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/products" element={<ProductsView />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/recently-viewed" element={<RecentlyViewed />} />
+            <Route path="/order-tracking" element={<OrderTracking />} />
+            <Route path="/invoice/:id" element={<Invoice />} />
             
             {/* Admin Routes */}
             <Route path="/admin" element={<AdminDashboard />} />
