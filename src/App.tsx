@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Cart from "./pages/cart/Cart";
+import ProductsView from "./pages/products/ProductsView";
 
 // Admin imports
 import AdminDashboard from "./pages/admin/Dashboard";
@@ -25,6 +26,7 @@ const App = () => (
           {/* Customer Routes */}
           <Route path="/" element={<Index />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/products" element={<ProductsView />} />
           
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminDashboard />} />

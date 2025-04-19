@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { Logo } from "@/components/ui/logo";
@@ -26,9 +25,7 @@ export function CustomerFooter() {
             <ul className="space-y-2">
               <li><Link to="/about" className="text-gray-600 hover:text-aqua-600">About Us</Link></li>
               <li><Link to="/careers" className="text-gray-600 hover:text-aqua-600">Careers</Link></li>
-              <li><Link to="/corporate-info" className="text-gray-600 hover:text-aqua-600">Corporate Information</Link></li>
               <li><Link to="/news" className="text-gray-600 hover:text-aqua-600">News & Press</Link></li>
-              <li><Link to="/investors" className="text-gray-600 hover:text-aqua-600">Investors</Link></li>
             </ul>
           </div>
           

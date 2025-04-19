@@ -1,4 +1,3 @@
-
 import { MainLayout } from "@/components/layouts/main-layout";
 import { Button } from "@/components/ui/button";
 import { 
@@ -57,10 +56,10 @@ const Index = () => {
                   <p className="text-gray-800 mb-2">{deal.subtitle}</p>
                   {deal.price && (
                     <div className="flex items-baseline">
-                      <span className="text-xl font-bold">{deal.price}</span>
+                      <span className="text-xl font-bold">EGP {(Number(deal.price.replace('$', '')) * 30).toFixed(2)}</span>
                       {deal.originalPrice && (
                         <span className="ml-2 text-gray-500 line-through">
-                          {deal.originalPrice}
+                          EGP {(Number(deal.originalPrice.replace('$', '')) * 30).toFixed(2)}
                         </span>
                       )}
                     </div>
