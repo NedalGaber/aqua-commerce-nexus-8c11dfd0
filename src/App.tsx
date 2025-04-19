@@ -22,6 +22,10 @@ import AdminDashboard from "./pages/admin/Dashboard";
 
 // Delivery imports
 import DeliveryDashboard from "./pages/delivery/Dashboard";
+import DeliveryPackages from "./pages/delivery/Packages";
+import DeliveryRoutes from "./pages/delivery/Routes";
+import DeliveryHistory from "./pages/delivery/History";
+import DeliveryProfile from "./pages/delivery/Profile";
 
 const App = () => {
   // Create a client
@@ -51,6 +55,10 @@ const App = () => {
             
             {/* Delivery Routes */}
             <Route path="/delivery" element={<DeliveryDashboard />} />
+            <Route path="/delivery/packages" element={<DeliveryPackages />} />
+            <Route path="/delivery/routes" element={<DeliveryRoutes />} />
+            <Route path="/delivery/history" element={<DeliveryHistory />} />
+            <Route path="/delivery/profile" element={<DeliveryProfile />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
