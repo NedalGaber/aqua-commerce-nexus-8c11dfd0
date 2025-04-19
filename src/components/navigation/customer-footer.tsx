@@ -22,7 +22,7 @@ export function CustomerFooter() {
           </div>
           
           <div>
-            <h3 className="font-semibold text-lg mb-4">AquaCommerce</h3>
+            <h3 className="font-semibold text-lg mb-4">TechXpress</h3>
             <ul className="space-y-2">
               <li><Link to="/about" className="text-gray-600 hover:text-aqua-600">About Us</Link></li>
               <li><Link to="/careers" className="text-gray-600 hover:text-aqua-600">Careers</Link></li>
@@ -35,8 +35,6 @@ export function CustomerFooter() {
           <div>
             <h3 className="font-semibold text-lg mb-4">Services</h3>
             <ul className="space-y-2">
-              <li><Link to="/aquatech" className="text-gray-600 hover:text-aqua-600">AquaTech Membership</Link></li>
-              <li><Link to="/trade-in" className="text-gray-600 hover:text-aqua-600">Trade-In Program</Link></li>
               <li><Link to="/business" className="text-gray-600 hover:text-aqua-600">Business Solutions</Link></li>
               <li><Link to="/protection" className="text-gray-600 hover:text-aqua-600">Protection Plans</Link></li>
               <li><Link to="/financing" className="text-gray-600 hover:text-aqua-600">Financing Options</Link></li>
@@ -82,7 +80,7 @@ export function CustomerFooter() {
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="mb-4 md:mb-0">
               <Logo className="mb-2" />
-              <p className="text-sm text-gray-600">© {new Date().getFullYear()} AquaCommerce Inc. All rights reserved.</p>
+              <p className="text-sm text-gray-600">© {new Date().getFullYear()} TechXpress Inc. All rights reserved.</p>
             </div>
             
             <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center">

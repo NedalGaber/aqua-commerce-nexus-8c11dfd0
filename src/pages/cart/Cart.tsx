@@ -39,9 +39,9 @@ const cartItems = [
 const Cart = () => {
   // Calculate totals
   const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-  const discount = 59;
-  const tax = (subtotal - discount) * 0.19; // Assuming 19% tax
-  const shipping = 30;
+  const discount = 1800; // Adjusted to EGP
+  const tax = (subtotal - discount) * 0.14; // Egypt's VAT rate is 14%
+  const shipping = 150; // Adjusted to EGP
   const total = subtotal - discount + tax + shipping;
 
   return (
@@ -95,7 +95,7 @@ const Cart = () => {
                   {/* Price */}
                   <div className="text-sm text-gray-700">
                     <div className="md:hidden font-semibold text-gray-700 mb-1">Price</div>
-                    ${item.price}
+                    {item.price.toLocaleString()} EGP
                   </div>
                   
                   {/* Quantity */}
@@ -116,7 +116,7 @@ const Cart = () => {
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="md:hidden font-semibold text-gray-700 mb-1">Total</div>
-                      <span className="text-sm font-medium">${item.price * item.quantity}</span>
+                      <span className="text-sm font-medium">{(item.price * item.quantity).toLocaleString()} EGP</span>
                     </div>
                     <Button variant="ghost" size="icon" className="text-gray-400 hover:text-red-500">
                       <Trash2 className="h-5 w-5" />
@@ -145,23 +145,23 @@ const Cart = () => {
               <div className="space-y-3 mb-4">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Items subtotal :</span>
-                  <span className="font-medium">${subtotal}</span>
+                  <span className="font-medium">{subtotal.toLocaleString()} EGP</span>
                 </div>
                 <div className="flex justify-between text-red-500">
                   <span>Discount :</span>
-                  <span>-${discount}</span>
+                  <span>-{discount.toLocaleString()} EGP</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Tax :</span>
-                  <span className="font-medium">${tax.toFixed(1)}</span>
+                  <span className="font-medium">{tax.toFixed(0).toLocaleString()} EGP</span>
                 </div>
                 <div className="flex justify-between border-t pt-3">
                   <span className="text-gray-600">Subtotal :</span>
-                  <span className="font-medium">${(subtotal - discount + tax).toFixed(0)}</span>
+                  <span className="font-medium">{(subtotal - discount + tax).toFixed(0).toLocaleString()} EGP</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Shipping Cost :</span>
-                  <span className="font-medium">${shipping}</span>
+                  <span className="font-medium">{shipping.toLocaleString()} EGP</span>
                 </div>
               </div>
               
@@ -174,7 +174,7 @@ const Cart = () => {
               {/* Total */}
               <div className="flex justify-between items-center text-xl font-bold mb-6">
                 <span>Total :</span>
-                <span>${total.toFixed(2)}</span>
+                <span>{total.toFixed(0).toLocaleString()} EGP</span>
               </div>
               
               {/* Checkout Button */}
