@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { Search, ShoppingCart, User, Heart, Menu, ChevronDown } from "lucide-react";
@@ -121,21 +120,12 @@ export function CustomerHeader() {
               
               <Link to="/deals" className="hover:text-aqua-100">Top Deals</Link>
               <Link to="/deals-of-the-day" className="hover:text-aqua-100">Deal of the Day</Link>
-              <Link to="/totaltech" className="hover:text-aqua-100">AquaTech Membership</Link>
-              <Link to="/credit-card" className="hover:text-aqua-100">Credit Cards</Link>
-              <Link to="/gift-cards" className="hover:text-aqua-100">Gift Cards</Link>
             </div>
             
             <div className="lg:hidden">
               <Button variant="ghost" size="sm" className="text-white">
                 <Menu className="h-5 w-5 mr-2" />
                 Menu
-              </Button>
-            </div>
-            
-            <div className="hidden lg:block">
-              <Button variant="ghost" className="text-white hover:text-aqua-100">
-                Gift Ideas
               </Button>
             </div>
           </div>
