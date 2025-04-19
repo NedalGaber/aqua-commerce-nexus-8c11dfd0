@@ -28,7 +28,7 @@ import Settings from "./pages/admin/Settings";
 // Delivery imports
 import Dashboard from "./pages/delivery/Dashboard";
 import Packages from "./pages/delivery/Packages";
-import Routes from "./pages/delivery/Routes";
+import DeliveryRoutes from "./pages/delivery/Routes";
 import History from "./pages/delivery/History";
 import DeliveryProfile from "./pages/delivery/Profile";
 
@@ -66,7 +66,7 @@ const App = () => {
             {/* Delivery Routes */}
             <Route path="/delivery" element={<Dashboard />} />
             <Route path="/delivery/packages" element={<Packages />} />
-            <Route path="/delivery/routes" element={<Routes />} />
+            <Route path="/delivery/routes" element={<DeliveryRoutes />} />
             <Route path="/delivery/history" element={<History />} />
             <Route path="/delivery/profile" element={<DeliveryProfile />} />
             
