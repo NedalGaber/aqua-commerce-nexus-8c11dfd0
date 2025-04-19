@@ -1,10 +1,10 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
+
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Cart from "./pages/cart/Cart";
@@ -19,13 +19,11 @@ import Invoice from "./pages/orders/Invoice";
 
 // Admin imports
 import AdminDashboard from "./pages/admin/Dashboard";
-
-// Delivery imports
-import DeliveryDashboard from "./pages/delivery/Dashboard";
-import DeliveryPackages from "./pages/delivery/Packages";
-import DeliveryRoutes from "./pages/delivery/Routes";
-import DeliveryHistory from "./pages/delivery/History";
-import DeliveryProfile from "./pages/delivery/Profile";
+import Products from "./pages/admin/Products";
+import Orders from "./pages/admin/Orders";
+import Inventory from "./pages/admin/Inventory";
+import Users from "./pages/admin/Users";
+import Settings from "./pages/admin/Settings";
 
 const App = () => {
   // Create a client
@@ -52,6 +50,11 @@ const App = () => {
             
             {/* Admin Routes */}
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/products" element={<Products />} />
+            <Route path="/admin/orders" element={<Orders />} />
+            <Route path="/admin/inventory" element={<Inventory />} />
+            <Route path="/admin/users" element={<Users />} />
+            <Route path="/admin/settings" element={<Settings />} />
             
             {/* Delivery Routes */}
             <Route path="/delivery" element={<DeliveryDashboard />} />
