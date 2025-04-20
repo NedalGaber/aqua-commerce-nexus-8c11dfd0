@@ -123,7 +123,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Services Banner */}
+      {/* Services Banner - Updated with Fast Delivery */}
       <div className="bg-gray-50 py-10">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -156,12 +156,12 @@ const Index = () => {
             <div className="bg-white p-6 rounded-lg border border-gray-200 text-center">
               <div className="bg-aqua-100 h-16 w-16 rounded-full mx-auto flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8 text-aqua-600">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
+                  <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+                  <polyline points="13 2 13 9 20 9"/>
                 </svg>
               </div>
-              <h3 className="text-lg font-bold mb-2">In-Store Pickup</h3>
-              <p className="text-gray-600">Ready within one hour</p>
+              <h3 className="text-lg font-bold mb-2">Fast Delivery</h3>
+              <p className="text-gray-600">Next-day delivery available</p>
             </div>
           </div>
         </div>

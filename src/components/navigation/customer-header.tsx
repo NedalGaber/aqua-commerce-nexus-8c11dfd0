@@ -102,10 +102,10 @@ export function CustomerHeader() {
                   <ChevronDown className="h-4 w-4 ml-1" />
                 </button>
                 
-                {/* Categories dropdown */}
+                {/* Categories dropdown - Updated width */}
                 {showCategories && (
                   <div 
-                    className="absolute top-full left-0 w-screen bg-white shadow-lg z-50 text-gray-800 mt-1"
+                    className="absolute top-full left-0 w-[calc(100vw-2rem)] max-w-7xl bg-white shadow-lg z-50 text-gray-800 mt-1"
                     onMouseEnter={() => setShowCategories(true)}
                     onMouseLeave={() => setShowCategories(false)}
                   >
