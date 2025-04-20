@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -47,9 +46,11 @@ const contactInfoSchema = z.object({
 });
 
 const addressSchema = z.object({
-  street: z.string().min(5, "Street address must be at least 5 characters"),
+  unitNumber: z.string().optional(),
+  streetNumber: z.string().min(1, "Street number is required"),
+  addressLine1: z.string().min(5, "Address line must be at least 5 characters"),
+  addressLine2: z.string().optional(),
   city: z.string().min(2, "City must be at least 2 characters"),
-  state: z.string().min(2, "State must be at least 2 characters"),
   zipCode: z.string().min(5, "ZIP code must be at least 5 characters"),
   country: z.string().min(2, "Country must be at least 2 characters"),
 });
@@ -89,9 +90,11 @@ export const SignUpForm = () => {
   const addressForm = useForm<z.infer<typeof addressSchema>>({
     resolver: zodResolver(addressSchema),
     defaultValues: {
-      street: "",
+      unitNumber: "",
+      streetNumber: "",
+      addressLine1: "",
+      addressLine2: "",
       city: "",
-      state: "",
       zipCode: "",
       country: "",
     },
@@ -112,9 +115,9 @@ export const SignUpForm = () => {
       setStep(step + 1);
     } else {
       setIsLoading(true);
-      // TODO: Implement actual sign up logic with all collected data
       console.log({ ...formData, ...stepData });
       setIsLoading(false);
+      navigate('/profile');
     }
   };
 
@@ -298,17 +301,61 @@ export const SignUpForm = () => {
         return (
           <Form {...addressForm}>
             <form onSubmit={addressForm.handleSubmit(onSubmitStep)} className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <FormField
+                  control={addressForm.control}
+                  name="unitNumber"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Unit Number</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Apt, Suite, etc." {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={addressForm.control}
+                  name="streetNumber"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Street Number</FormLabel>
+                      <FormControl>
+                        <Input placeholder="123" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
               <FormField
                 control={addressForm.control}
-                name="street"
+                name="addressLine1"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Street Address</FormLabel>
+                    <FormLabel>Address Line 1</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <MapPin className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                         <Input {...field} className="pl-9" placeholder="Enter street address" />
                       </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={addressForm.control}
+                name="addressLine2"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Address Line 2 (Optional)</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Additional address info" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -332,20 +379,6 @@ export const SignUpForm = () => {
               <div className="grid grid-cols-2 gap-4">
                 <FormField
                   control={addressForm.control}
-                  name="state"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>State</FormLabel>
-                      <FormControl>
-                        <Input {...field} placeholder="Enter state" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={addressForm.control}
                   name="zipCode"
                   render={({ field }) => (
                     <FormItem>
@@ -357,21 +390,21 @@ export const SignUpForm = () => {
                     </FormItem>
                   )}
                 />
-              </div>
 
-              <FormField
-                control={addressForm.control}
-                name="country"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Country</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="Enter country" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                <FormField
+                  control={addressForm.control}
+                  name="country"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Country</FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder="Enter country" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
               <div className="flex gap-2">
                 <Button type="button" variant="outline" className="w-full" onClick={() => setStep(2)}>
