@@ -35,6 +35,8 @@ import DeliveryProfile from "./pages/delivery/Profile";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
 import AddPayment from "./pages/payment/AddPayment";
+import AddPhone from "./pages/profile/AddPhone";
+import AddAddress from "./pages/profile/AddAddress";
 
 const App = () => {
   // Create a client
@@ -58,6 +60,8 @@ const App = () => {
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/add-phone" element={<AddPhone />} />
+            <Route path="/profile/add-address" element={<AddAddress />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/recently-viewed" element={<RecentlyViewed />} />
             <Route path="/order-tracking" element={<OrderTracking />} />

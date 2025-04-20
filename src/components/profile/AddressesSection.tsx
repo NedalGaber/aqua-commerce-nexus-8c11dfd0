@@ -1,19 +1,21 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Plus, Edit, Trash2 } from "lucide-react";
 import { Address } from "@/types";
+import { useNavigate } from "react-router-dom";
 
 interface AddressesSectionProps {
   addresses: Address[];
 }
 
 export function AddressesSection({ addresses }: AddressesSectionProps) {
+  const navigate = useNavigate();
+  
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-semibold">Addresses</h2>
-        <Button variant="outline" size="sm">
+        <Button variant="outline" size="sm" onClick={() => navigate('/profile/add-address')}>
           <Plus className="h-4 w-4 mr-2" />
           Add New Address
         </Button>

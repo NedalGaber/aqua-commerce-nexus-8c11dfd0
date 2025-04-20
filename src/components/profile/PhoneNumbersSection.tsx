@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Plus, Edit, Trash2, Phone } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface PhoneNumber {
   id: string;
@@ -15,11 +15,13 @@ interface PhoneNumbersSectionProps {
 }
 
 export function PhoneNumbersSection({ phoneNumbers }: PhoneNumbersSectionProps) {
+  const navigate = useNavigate();
+  
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-semibold">Phone Numbers</h2>
-        <Button variant="outline" size="sm">
+        <Button variant="outline" size="sm" onClick={() => navigate('/profile/add-phone')}>
           <Plus className="h-4 w-4 mr-2" />
           Add New Phone
         </Button>
