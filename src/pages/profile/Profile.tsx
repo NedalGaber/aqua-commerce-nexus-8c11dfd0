@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { MainLayout } from "@/components/layouts/main-layout";
 import { Button } from "@/components/ui/button";
@@ -6,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { User } from "lucide-react";
 import { AddressesSection } from "@/components/profile/AddressesSection";
 import { PaymentMethodsSection } from "@/components/profile/PaymentMethodsSection";
+import { PhoneNumbersSection } from "@/components/profile/PhoneNumbersSection";
 
 // Mock data (in real app, this would come from your backend)
 const mockAddresses = [
@@ -27,6 +27,20 @@ const mockPaymentMethods = [
     expiryDate: "12/25",
     cardType: "Visa",
     isDefault: true,
+  },
+];
+
+const mockPhoneNumbers = [
+  {
+    id: "1",
+    number: "+1 (555) 123-4567",
+    type: "mobile" as const,
+    isDefault: true,
+  },
+  {
+    id: "2",
+    number: "+1 (555) 987-6543",
+    type: "home" as const,
   },
 ];
 
@@ -56,6 +70,9 @@ export default function Profile() {
                 <Input placeholder="Phone" defaultValue="+20 123 456 789" className="col-span-2" />
               </div>
             </div>
+
+            {/* Phone Numbers Section */}
+            <PhoneNumbersSection phoneNumbers={mockPhoneNumbers} />
 
             {/* Addresses Section */}
             <AddressesSection addresses={mockAddresses} />
