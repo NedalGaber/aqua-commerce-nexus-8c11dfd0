@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { MainLayout } from "@/components/layouts/main-layout";
 import { Button } from "@/components/ui/button";
@@ -150,14 +149,10 @@ export default function Checkout() {
                 <span>Shipping</span>
                 <span>EGP 150.00</span>
               </div>
-              <div className="flex justify-between">
-                <span>Tax</span>
-                <span>EGP 3,824.99</span>
-              </div>
               <div className="border-t pt-3">
                 <div className="flex justify-between font-semibold">
                   <span>Total</span>
-                  <span>EGP 29,474.98</span>
+                  <span>EGP 25,649.99</span>
                 </div>
               </div>
             </div>
