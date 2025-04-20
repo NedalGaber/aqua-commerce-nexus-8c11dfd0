@@ -32,6 +32,9 @@ import DeliveryRoutes from "./pages/delivery/Routes";
 import History from "./pages/delivery/History";
 import DeliveryProfile from "./pages/delivery/Profile";
 
+import SignIn from "./pages/auth/SignIn";
+import SignUp from "./pages/auth/SignUp";
+
 const App = () => {
   // Create a client
   const queryClient = new QueryClient();
@@ -43,6 +46,10 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <Routes>
+            {/* Auth Routes */}
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            
             {/* Customer Routes */}
             <Route path="/" element={<Index />} />
             <Route path="/cart" element={<Cart />} />
@@ -70,7 +77,7 @@ const App = () => {
             <Route path="/delivery/history" element={<History />} />
             <Route path="/delivery/profile" element={<DeliveryProfile />} />
             
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            {/* Catch all route */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

@@ -92,27 +92,35 @@ export function CustomerHeader() {
           <div className="flex items-center justify-between">
             <div className="hidden lg:flex items-center space-x-6">
               <div 
-                className="flex items-center cursor-pointer"
+                className="relative"
                 onMouseEnter={() => setShowCategories(true)}
                 onMouseLeave={() => setShowCategories(false)}
               >
-                <Menu className="h-5 w-5 mr-2" />
-                <span className="font-medium">Categories</span>
-                <ChevronDown className="h-4 w-4 ml-1" />
+                <button className="flex items-center cursor-pointer">
+                  <Menu className="h-5 w-5 mr-2" />
+                  <span className="font-medium">Categories</span>
+                  <ChevronDown className="h-4 w-4 ml-1" />
+                </button>
                 
                 {/* Categories dropdown */}
                 {showCategories && (
-                  <div className="absolute top-full left-0 w-full bg-white shadow-lg z-50 text-gray-800 mt-1 border-t border-aqua-300">
-                    <div className="container mx-auto px-4 py-4 grid grid-cols-4 gap-6">
-                      {categoryList.map((category, index) => (
-                        <Link 
-                          key={index} 
-                          to={`/category/${category.toLowerCase().replace(/\s+/g, '-')}`}
-                          className="hover:text-aqua-600 py-2"
-                        >
-                          {category}
-                        </Link>
-                      ))}
+                  <div 
+                    className="absolute top-full left-0 w-screen bg-white shadow-lg z-50 text-gray-800 mt-1"
+                    onMouseEnter={() => setShowCategories(true)}
+                    onMouseLeave={() => setShowCategories(false)}
+                  >
+                    <div className="container mx-auto">
+                      <div className="grid grid-cols-4 gap-6 p-6">
+                        {categoryList.map((category, index) => (
+                          <Link 
+                            key={index} 
+                            to={`/category/${category.toLowerCase().replace(/\s+/g, '-')}`}
+                            className="hover:text-aqua-600 py-2"
+                          >
+                            {category}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 )}
