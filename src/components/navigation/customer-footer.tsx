@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { Logo } from "@/components/ui/logo";
@@ -15,7 +16,7 @@ export function CustomerFooter() {
               <li><Link to="/contact" className="text-gray-600 hover:text-aqua-600">Contact Us</Link></li>
               <li><Link to="/help" className="text-gray-600 hover:text-aqua-600">Help Center</Link></li>
               <li><Link to="/returns" className="text-gray-600 hover:text-aqua-600">Returns & Exchanges</Link></li>
-              <li><Link to="/order-status" className="text-gray-600 hover:text-aqua-600">Check Order Status</Link></li>
+              <li><Link to="/order-tracking" className="text-gray-600 hover:text-aqua-600">Check Order Status</Link></li>
               <li><Link to="/shipping" className="text-gray-600 hover:text-aqua-600">Shipping & Delivery</Link></li>
             </ul>
           </div>
@@ -86,7 +87,6 @@ export function CustomerFooter() {
               <Link to="/accessibility" className="text-sm text-gray-600 hover:text-aqua-600">Accessibility</Link>
               <Link to="/interest-based-ads" className="text-sm text-gray-600 hover:text-aqua-600">Interest-Based Ads</Link>
               <Link to="/ca-privacy" className="text-sm text-gray-600 hover:text-aqua-600">CA Privacy Rights</Link>
-              <Link to="/feedback" className="text-sm text-gray-600 hover:text-aqua-600">Do Not Sell My Personal Information</Link>
             </div>
           </div>
         </div>

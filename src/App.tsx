@@ -38,6 +38,14 @@ import AddPayment from "./pages/payment/AddPayment";
 import AddPhone from "./pages/profile/AddPhone";
 import AddAddress from "./pages/profile/AddAddress";
 
+// Deals imports
+import Deals from "./pages/deals/Deals";
+import DealOfTheDay from "./pages/deals/DealOfTheDay";
+
+// Info page imports
+import Contact from "./pages/info/Contact";
+import About from "./pages/info/About";
+
 const App = () => {
   // Create a client
   const queryClient = new QueryClient();
@@ -67,6 +75,14 @@ const App = () => {
             <Route path="/order-tracking" element={<OrderTracking />} />
             <Route path="/invoice/:id" element={<Invoice />} />
             <Route path="/add-payment" element={<AddPayment />} />
+            
+            {/* Deals Routes */}
+            <Route path="/deals" element={<Deals />} />
+            <Route path="/deals-of-the-day" element={<DealOfTheDay />} />
+            
+            {/* Info Routes */}
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
             
             {/* Admin Routes */}
             <Route path="/admin" element={<AdminDashboard />} />
