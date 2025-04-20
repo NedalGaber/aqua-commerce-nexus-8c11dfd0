@@ -34,6 +34,7 @@ import DeliveryProfile from "./pages/delivery/Profile";
 
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
+import AddPayment from "./pages/payment/AddPayment";
 
 const App = () => {
   // Create a client
@@ -61,6 +62,7 @@ const App = () => {
             <Route path="/recently-viewed" element={<RecentlyViewed />} />
             <Route path="/order-tracking" element={<OrderTracking />} />
             <Route path="/invoice/:id" element={<Invoice />} />
+            <Route path="/add-payment" element={<AddPayment />} />
             
             {/* Admin Routes */}
             <Route path="/admin" element={<AdminDashboard />} />

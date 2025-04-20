@@ -4,6 +4,31 @@ import { MainLayout } from "@/components/layouts/main-layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { User } from "lucide-react";
+import { AddressesSection } from "@/components/profile/AddressesSection";
+import { PaymentMethodsSection } from "@/components/profile/PaymentMethodsSection";
+
+// Mock data (in real app, this would come from your backend)
+const mockAddresses = [
+  {
+    id: "1",
+    street: "123 Main St",
+    city: "New York",
+    state: "NY",
+    zipCode: "10001",
+    country: "USA",
+    isDefault: true,
+  },
+];
+
+const mockPaymentMethods = [
+  {
+    id: "1",
+    cardNumber: "4242",
+    expiryDate: "12/25",
+    cardType: "Visa",
+    isDefault: true,
+  },
+];
 
 export default function Profile() {
   return (
@@ -11,6 +36,7 @@ export default function Profile() {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto">
           <div className="bg-white rounded-lg shadow-sm p-6 space-y-6">
+            {/* Personal Information Section */}
             <div className="flex items-center space-x-4">
               <div className="h-20 w-20 rounded-full bg-gray-200 flex items-center justify-center">
                 <User className="h-10 w-10 text-gray-500" />
@@ -31,16 +57,11 @@ export default function Profile() {
               </div>
             </div>
 
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold">Address</h2>
-              <div className="space-y-4">
-                <Input placeholder="Street Address" />
-                <div className="grid grid-cols-2 gap-4">
-                  <Input placeholder="City" />
-                  <Input placeholder="Postal Code" />
-                </div>
-              </div>
-            </div>
+            {/* Addresses Section */}
+            <AddressesSection addresses={mockAddresses} />
+
+            {/* Payment Methods Section */}
+            <PaymentMethodsSection paymentMethods={mockPaymentMethods} />
 
             <Button className="w-full">Save Changes</Button>
           </div>
