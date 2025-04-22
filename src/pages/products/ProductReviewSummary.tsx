@@ -41,7 +41,7 @@ export const ProductReviewSummary: React.FC<ProductReviewSummaryProps> = ({
       <div className="space-y-1.5 mb-6">
         {ratingBreakdown.map((r) => (
           <div key={r.star} className="flex items-center gap-2">
-            <span className="w-10 text-[#10539E] underline cursor-pointer text-sm">{r.star} star</span>
+            <span className="w-10 text-[#10539E] text-sm">{r.star} star</span>
             <div className="flex-1 h-2 bg-[#F1F1F1] rounded">
               <div className={`${colorBar} h-2 rounded`} style={{width: `${r.percent}%`}} />
             </div>
@@ -49,9 +49,6 @@ export const ProductReviewSummary: React.FC<ProductReviewSummaryProps> = ({
           </div>
         ))}
       </div>
-      <a href="#" className="block text-[#10539E] text-xs mb-6 hover:underline">
-        How are ratings calculated?
-      </a>
       <div className="mb-3 font-semibold text-gray-800">Review this product</div>
       <div className="text-gray-500 text-sm mb-4">Share your thoughts with other customers</div>
       <Button className="w-full bg-white border border-gray-400 hover:bg-gray-50 text-gray-800 rounded-full font-medium">

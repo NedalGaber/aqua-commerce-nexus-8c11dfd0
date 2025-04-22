@@ -1,7 +1,6 @@
 
 import React from "react";
 import { Star, User } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 interface Review {
   id: string;
@@ -10,15 +9,11 @@ interface Review {
   title: string;
   comment: string;
   date: string;
-  location?: string;
   verified?: boolean;
-  language?: string;
 }
+
 interface ProductReviewListProps {
-  reviewsByCountry: {
-    country: string;
-    reviews: Review[];
-  }[];
+  reviews: Review[];
 }
 
 const ReviewItem: React.FC<{ review: Review }> = ({ review }) => (
@@ -40,43 +35,28 @@ const ReviewItem: React.FC<{ review: Review }> = ({ review }) => (
       <span className="font-bold ml-2 text-gray-900">{review.title}</span>
     </div>
     <div className="text-xs text-gray-600 mt-0.5">
-      Reviewed in {review.location || "Unknown location"} on {review.date}
+      Reviewed on {review.date}
       {review.verified && (
         <span className="text-[#C45500] font-bold ml-3">Verified Purchase</span>
       )}
     </div>
     <div className="text-sm text-gray-800 mt-1">{review.comment}</div>
-    <div className="flex items-center space-x-2 mt-2 text-xs">
-      <a href="#" className="text-[#10539E] hover:underline">Report</a>
-      {review.language && (
-        <a href="#" className="text-[#10539E] hover:underline">Translate review to English</a>
-      )}
-    </div>
   </div>
 );
 
 export const ProductReviewList: React.FC<ProductReviewListProps> = ({
-  reviewsByCountry,
+  reviews,
 }) => (
   <div className="bg-white rounded-lg border border-gray-200 px-6 py-5">
-    <h3 className="text-lg font-bold mb-2">Top reviews from Egypt</h3>
-    <div className="bg-[#f3f3f3] text-gray-500 text-sm rounded p-4 mb-4">
-      There are 0 reviews and 0 ratings from Egypt
-    </div>
-    <h3 className="text-lg font-bold mb-2 mt-6">Top reviews from other countries</h3>
-    <div className="mb-3">
-      <Button size="sm" variant="outline" className="rounded-full border-gray-400 text-gray-700">
-        Translate all reviews to English
-      </Button>
-    </div>
-    {/* Render reviews from other countries */}
-    {reviewsByCountry.map(group =>
-      group.country !== 'Egypt' && group.reviews.length > 0 ? (
-        group.reviews.map(review =>
-          <ReviewItem key={review.id} review={review} />
-        )
-      ) : null
+    <h3 className="text-lg font-bold mb-2">Customer Reviews</h3>
+    {reviews.length === 0 && (
+      <div className="bg-[#f3f3f3] text-gray-500 text-sm rounded p-4 mb-4">
+        There are no reviews yet.
+      </div>
     )}
+    {reviews.map(review => (
+      <ReviewItem key={review.id} review={review} />
+    ))}
     <div className="mt-4">
       <a href="#" className="text-[#10539E] font-semibold hover:underline">See more reviews &gt;</a>
     </div>

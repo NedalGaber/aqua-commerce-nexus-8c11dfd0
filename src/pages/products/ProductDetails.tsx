@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 import { Heart, ShoppingCart, Star } from "lucide-react";
 import { ProductReviewSummary } from './ProductReviewSummary';
 import { ProductReviewList } from './ProductReviewList';
+import { ProductOptions } from './ProductOptions';
+import { ProductTabs } from './ProductTabs';
 
 const sampleProduct = {
   name: "Apple MacBook Pro 16” M2 Pro",
@@ -39,7 +41,6 @@ const sampleProduct = {
       title: "Good quality mechanical keyboard",
       comment: "Very Happy",
       date: "3 September 2023",
-      location: "United Arab Emirates",
       verified: true,
     },
     {
@@ -49,9 +50,7 @@ const sampleProduct = {
       title: "ما يستحق المبلغ. عطاني النسخة القديمة عند اللي طلبته.",
       comment: "لكن الكيبورد جيد",
       date: "19 November 2024",
-      location: "Saudi Arabia",
       verified: true,
-      language: "ar",
     },
   ],
 };
@@ -67,22 +66,6 @@ const ratingBreakdown = [
 
 export default function ProductDetails() {
   const { id } = useParams();
-
-  // Organize reviews by country for demonstration
-  const reviewsByCountry = [
-    { country: "Egypt", reviews: [] },
-    { country: "UAE", reviews: [sampleProduct.reviews[0]] },
-    { country: "Saudi Arabia", reviews: [sampleProduct.reviews[1]] },
-  ];
-
-  // Group to match visual: Egypt | then Others
-  const reviewListData = [
-    { country: "Egypt", reviews: [] },
-    {
-      country: "Other countries",
-      reviews: sampleProduct.reviews.map(r => ({ ...r })),
-    },
-  ];
 
   return (
     <MainLayout>
@@ -131,59 +114,56 @@ export default function ProductDetails() {
               <span className="text-xl text-gray-500 line-through">EGP {sampleProduct.originalPrice.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
             </div>
 
-            <div className="space-y-4">
-              <h3 className="font-semibold">Description</h3>
-              <div className="rounded-md bg-[#f3f3f3] text-gray-700 px-5 py-4 text-base">
-                {sampleProduct.description}
-              </div>
-            </div>
+            {/* Options Configurator */}
+            <ProductOptions />
 
-            <div className="space-y-4">
-              <div className="flex space-x-4">
-                <Button size="lg" className="flex-1">
-                  <ShoppingCart className="mr-2 h-5 w-5" />
-                  Add to Cart
-                </Button>
-                <Button size="lg" variant="outline">
-                  <Heart className="h-5 w-5" />
-                </Button>
-              </div>
+            <div className="flex space-x-4">
+              <Button size="lg" className="flex-1">
+                <ShoppingCart className="mr-2 h-5 w-5" />
+                Add to Cart
+              </Button>
+              <Button size="lg" variant="outline">
+                <Heart className="h-5 w-5" />
+              </Button>
             </div>
           </div>
         </div>
 
-        {/* Amazon style: Reviews & Specs segment */}
-        <div className="mt-12 grid md:grid-cols-3 gap-8">
-          {/* Left: Reviews summary */}
-          <div className="md:col-span-1">
-            <ProductReviewSummary
-              avgRating={sampleProduct.rating}
-              totalRatings={sampleProduct.numRatings}
-              ratingBreakdown={ratingBreakdown}
-            />
-          </div>
-          {/* Center: Product specs */}
-          <div className="md:col-span-1 bg-gray-50 p-6 rounded-lg shadow-sm">
-            <h3 className="text-lg font-bold mb-4">Product Specifications</h3>
-            <ul className="text-sm text-gray-700 space-y-2">
-              {sampleProduct.specifications.map((item, idx) => (
-                <li key={idx} className="flex justify-between gap-3">
-                  <span className="font-medium">{item.key}</span>
-                  <span>{item.value}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          {/* Right: Review list */}
-          <div className="md:col-span-1">
-            <ProductReviewList reviewsByCountry={[
-              { country: "Egypt", reviews: [] },
-              {
-                country: "Other countries",
-                reviews: sampleProduct.reviews.map(r => ({ ...r })),
-              },
-            ]} />
-          </div>
+        {/* Product Tabs (Description, Reviews, Specifications) */}
+        <div className="mt-12">
+          <ProductTabs
+            description={
+              <div className="rounded-md bg-[#f3f3f3] text-gray-700 px-5 py-4 text-base">
+                {sampleProduct.description}
+              </div>
+            }
+            reviews={
+              <div className="grid md:grid-cols-3 gap-8">
+                <div className="md:col-span-1">
+                  <ProductReviewSummary
+                    avgRating={sampleProduct.rating}
+                    totalRatings={sampleProduct.numRatings}
+                    ratingBreakdown={ratingBreakdown}
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <ProductReviewList reviews={sampleProduct.reviews} />
+                </div>
+              </div>
+            }
+            specifications={
+              <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
+                <ul className="text-sm text-gray-700 space-y-2">
+                  {sampleProduct.specifications.map((item, idx) => (
+                    <li key={idx} className="flex justify-between gap-3">
+                      <span className="font-medium">{item.key}</span>
+                      <span>{item.value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            }
+          />
         </div>
       </div>
     </MainLayout>
