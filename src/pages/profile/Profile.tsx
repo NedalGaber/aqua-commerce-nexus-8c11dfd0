@@ -6,6 +6,7 @@ import { User } from "lucide-react";
 import { AddressesSection } from "@/components/profile/AddressesSection";
 import { PaymentMethodsSection } from "@/components/profile/PaymentMethodsSection";
 import { PhoneNumbersSection } from "@/components/profile/PhoneNumbersSection";
+import { Link } from "react-router-dom";
 
 // Mock data (in real app, this would come from your backend)
 const mockAddresses = [
@@ -67,7 +68,13 @@ export default function Profile() {
                 <Input placeholder="First Name" defaultValue="John" />
                 <Input placeholder="Last Name" defaultValue="Doe" />
                 <Input placeholder="Email" defaultValue="john.doe@example.com" className="col-span-2" />
-                <Input placeholder="Phone" defaultValue="+20 123 456 789" className="col-span-2" />
+              </div>
+              <div className="flex mt-2">
+                <Button asChild className="w-full" variant="outline">
+                  <Link to="/invoice/12345">
+                    📄 View My Invoices
+                  </Link>
+                </Button>
               </div>
             </div>
 

@@ -5,6 +5,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Package } from "lucide-react";
 
+// Fake previous orders data (in a real app, would fetch from backend)
+const previousOrders = [
+  {
+    id: "ORD-20250419",
+    date: "April 19, 2025",
+    status: "Delivered",
+    total: 1300.00,
+    items: 2,
+  },
+  {
+    id: "ORD-20250417",
+    date: "April 17, 2025",
+    status: "Shipped",
+    total: 499.00,
+    items: 1,
+  },
+];
+
 export default function OrderTracking() {
   return (
     <MainLayout>
@@ -51,6 +69,29 @@ export default function OrderTracking() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+          
+          {/* Previous Orders Section */}
+          <div className="bg-white p-6 rounded-lg shadow-sm mt-8">
+            <h2 className="text-lg font-semibold mb-4">Previous Orders</h2>
+            <div className="space-y-3">
+              {previousOrders.map((order) => (
+                <div key={order.id} className="flex items-center justify-between border-b last:border-b-0 py-3">
+                  <div>
+                    <div className="font-medium">Order #{order.id}</div>
+                    <div className="text-sm text-gray-500">{order.date} • {order.items} item{order.items > 1 ? 's' : ''}</div>
+                    <div className="text-sm text-gray-600">{order.status}</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="font-bold">EGP {order.total.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+                    <Button variant="outline" size="sm" className="mt-2">View Details</Button>
+                  </div>
+                </div>
+              ))}
+              {previousOrders.length === 0 && (
+                <div className="text-gray-500">You have no previous orders.</div>
+              )}
             </div>
           </div>
         </div>

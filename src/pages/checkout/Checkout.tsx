@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { MainLayout } from "@/components/layouts/main-layout";
 import { Button } from "@/components/ui/button";
@@ -46,7 +45,19 @@ const mockPaymentMethods: SavedPaymentMethod[] = [
   },
 ];
 
-// Delivery Methods
+const pickupLocations = [
+  {
+    id: "pickup1",
+    name: "Cairo Downtown Store",
+    address: "10 Abdel Khalek Sarwat, Cairo",
+  },
+  {
+    id: "pickup2",
+    name: "Alexandria Mall Branch",
+    address: "Alexandria City Center, Alexandria",
+  },
+];
+
 const deliveryMethods = [
   {
     id: "regular",
@@ -62,16 +73,24 @@ const deliveryMethods = [
     price: 300,
     icon: <Truck className="h-5 w-5 mr-2" />,
   },
+  {
+    id: "pickup",
+    name: "Pick up from store",
+    description: "Pick up your order from our pickup points.",
+    price: 0,
+    icon: <Truck className="h-5 w-5 mr-2" />,
+  },
 ];
 
 export default function Checkout() {
-  const [selectedAddressId, setSelectedAddressId] = useState(
+  const [selectedAddressId, setSelectedAddressId] = React.useState(
     mockAddresses.find(addr => addr.isDefault)?.id || ""
   );
-  const [selectedPaymentId, setSelectedPaymentId] = useState(
+  const [selectedPaymentId, setSelectedPaymentId] = React.useState(
     mockPaymentMethods.find(pm => pm.isDefault)?.id || ""
   );
-  const [selectedDelivery, setSelectedDelivery] = useState(deliveryMethods[0].id);
+  const [selectedDelivery, setSelectedDelivery] = React.useState(deliveryMethods[0].id);
+  const [selectedPickup, setSelectedPickup] = React.useState(pickupLocations[0]?.id || "");
 
   // For order summary
   const subtotal = 25499.99;
@@ -84,45 +103,73 @@ export default function Checkout() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Checkout Form */}
           <div className="lg:col-span-2 space-y-8">
-            {/* Shipping Address Selection */}
-            <div className="bg-white p-6 rounded-lg shadow-sm space-y-4">
-              <div className="flex justify-between items-center">
-                <h2 className="text-xl font-semibold">Shipping Address</h2>
-                <Button variant="outline" size="sm">
-                  <Plus className="h-4 w-4 mr-2" />
-                  Add New Address
-                </Button>
-              </div>
-              
-              <RadioGroup
-                value={selectedAddressId}
-                onValueChange={setSelectedAddressId}
-                className="space-y-4"
-              >
-                {mockAddresses.map((address) => (
-                  <div
-                    key={address.id}
-                    className={`flex items-start space-x-3 p-4 rounded-lg border ${
-                      selectedAddressId === address.id ? 'border-primary' : 'border-gray-200'
-                    }`}
-                  >
-                    <RadioGroupItem value={address.id} id={`address-${address.id}`} />
-                    <div className="space-y-1">
-                      <p className="font-medium">
-                        {address.street}
-                        {address.isDefault && (
-                          <span className="ml-2 text-sm text-primary">(Default)</span>
-                        )}
-                      </p>
-                      <p className="text-sm text-gray-500">
-                        {address.city}, {address.state} {address.zipCode}
-                      </p>
-                      <p className="text-sm text-gray-500">{address.country}</p>
+            {/* Shipping Address Selection - Hide if pickup selected */}
+            {selectedDelivery !== "pickup" && (
+              <div className="bg-white p-6 rounded-lg shadow-sm space-y-4">
+                <div className="flex justify-between items-center">
+                  <h2 className="text-xl font-semibold">Shipping Address</h2>
+                  <Button variant="outline" size="sm">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Add New Address
+                  </Button>
+                </div>
+                <RadioGroup
+                  value={selectedAddressId}
+                  onValueChange={setSelectedAddressId}
+                  className="space-y-4"
+                >
+                  {mockAddresses.map((address) => (
+                    <div
+                      key={address.id}
+                      className={`flex items-start space-x-3 p-4 rounded-lg border ${
+                        selectedAddressId === address.id ? 'border-primary' : 'border-gray-200'
+                      }`}
+                    >
+                      <RadioGroupItem value={address.id} id={`address-${address.id}`} />
+                      <div className="space-y-1">
+                        <p className="font-medium">
+                          {address.street}
+                          {address.isDefault && (
+                            <span className="ml-2 text-sm text-primary">(Default)</span>
+                          )}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          {address.city}, {address.state} {address.zipCode}
+                        </p>
+                        <p className="text-sm text-gray-500">{address.country}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </RadioGroup>
-            </div>
+                  ))}
+                </RadioGroup>
+              </div>
+            )}
+
+            {/* Pickup Location Selection - only if pickup selected */}
+            {selectedDelivery === "pickup" && (
+              <div className="bg-white p-6 rounded-lg shadow-sm space-y-4">
+                <h2 className="text-xl font-semibold">Choose Pickup Location</h2>
+                <RadioGroup
+                  value={selectedPickup}
+                  onValueChange={setSelectedPickup}
+                  className="space-y-4"
+                >
+                  {pickupLocations.map((pl) => (
+                    <div
+                      key={pl.id}
+                      className={`flex items-start space-x-3 p-4 rounded-lg border ${
+                        selectedPickup === pl.id ? 'border-primary bg-aqua-50' : 'border-gray-200'
+                      }`}
+                    >
+                      <RadioGroupItem value={pl.id} id={pl.id} />
+                      <div className="space-y-1">
+                        <p className="font-medium">{pl.name}</p>
+                        <p className="text-sm text-gray-500">{pl.address}</p>
+                      </div>
+                    </div>
+                  ))}
+                </RadioGroup>
+              </div>
+            )}
 
             {/* Delivery Method Selection */}
             <div className="bg-white p-6 rounded-lg shadow-sm space-y-4">
@@ -147,7 +194,9 @@ export default function Checkout() {
                         {dm.icon}
                         {dm.name}
                         <span className="ml-4 text-primary font-semibold">
-                          EGP {dm.price.toLocaleString(undefined, {minimumFractionDigits: 2})}
+                          {dm.price === 0
+                            ? "Free"
+                            : `EGP ${dm.price.toLocaleString(undefined, {minimumFractionDigits: 2})}`}
                         </span>
                       </div>
                       <span className="text-sm text-gray-500">
