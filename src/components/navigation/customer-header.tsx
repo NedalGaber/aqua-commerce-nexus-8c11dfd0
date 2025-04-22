@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { Search, ShoppingCart, User, Heart, Menu, ChevronDown } from "lucide-react";
@@ -8,7 +9,12 @@ import { categoryList } from "@/data/mockData";
 
 export function CustomerHeader() {
   const [showCategories, setShowCategories] = React.useState(false);
-  
+  const [activeCategory, setActiveCategory] = React.useState<string | null>(null);
+
+  // Helper to get the path from category name
+  const getCategoryPath = (category: string) =>
+    `/category/${category.toLowerCase().replace(/\s+/g, '-')}`;
+
   return (
     <header className="bg-white border-b border-gray-200">
       {/* Top Navigation */}
@@ -111,15 +117,22 @@ export function CustomerHeader() {
                   >
                     <div className="container mx-auto">
                       <div className="grid grid-cols-4 gap-6 p-6">
-                        {categoryList.map((category, index) => (
-                          <Link 
-                            key={index} 
-                            to={`/category/${category.toLowerCase().replace(/\s+/g, '-')}`}
-                            className="hover:text-aqua-600 py-2"
-                          >
-                            {category}
-                          </Link>
-                        ))}
+                        {categoryList.map((category, index) => {
+                          const path = getCategoryPath(category);
+                          const isActive = activeCategory === category;
+                          return (
+                            <Link 
+                              key={index} 
+                              to={path}
+                              onClick={() => setActiveCategory(category)}
+                              className={`hover:text-aqua-600 py-2 transition-colors ${
+                                isActive ? 'text-aqua-600 underline font-semibold' : ''
+                              }`}
+                            >
+                              {category}
+                            </Link>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -142,3 +155,4 @@ export function CustomerHeader() {
     </header>
   );
 }
+
