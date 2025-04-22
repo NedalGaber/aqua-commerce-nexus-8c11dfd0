@@ -1,8 +1,9 @@
+
 import React, { useState } from 'react';
 import { MainLayout } from "@/components/layouts/main-layout";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { CreditCard, Plus } from "lucide-react";
+import { CreditCard, Plus, Truck } from "lucide-react";
 import { Address } from "@/types";
 import { SavedPaymentMethod } from "@/types/checkout";
 
@@ -45,6 +46,24 @@ const mockPaymentMethods: SavedPaymentMethod[] = [
   },
 ];
 
+// Delivery Methods
+const deliveryMethods = [
+  {
+    id: "regular",
+    name: "Regular Delivery",
+    description: "Delivered in 3-5 business days.",
+    price: 150,
+    icon: <Truck className="h-5 w-5 mr-2" />,
+  },
+  {
+    id: "express",
+    name: "Express Delivery",
+    description: "Delivered in 1-2 business days.",
+    price: 300,
+    icon: <Truck className="h-5 w-5 mr-2" />,
+  },
+];
+
 export default function Checkout() {
   const [selectedAddressId, setSelectedAddressId] = useState(
     mockAddresses.find(addr => addr.isDefault)?.id || ""
@@ -52,6 +71,12 @@ export default function Checkout() {
   const [selectedPaymentId, setSelectedPaymentId] = useState(
     mockPaymentMethods.find(pm => pm.isDefault)?.id || ""
   );
+  const [selectedDelivery, setSelectedDelivery] = useState(deliveryMethods[0].id);
+
+  // For order summary
+  const subtotal = 25499.99;
+  const shipping = deliveryMethods.find((d) => d.id === selectedDelivery)?.price ?? 150;
+  const total = subtotal + shipping;
 
   return (
     <MainLayout>
@@ -93,6 +118,41 @@ export default function Checkout() {
                         {address.city}, {address.state} {address.zipCode}
                       </p>
                       <p className="text-sm text-gray-500">{address.country}</p>
+                    </div>
+                  </div>
+                ))}
+              </RadioGroup>
+            </div>
+
+            {/* Delivery Method Selection */}
+            <div className="bg-white p-6 rounded-lg shadow-sm space-y-4">
+              <div className="flex justify-between items-center">
+                <h2 className="text-xl font-semibold">Delivery Method</h2>
+              </div>
+              <RadioGroup
+                value={selectedDelivery}
+                onValueChange={setSelectedDelivery}
+                className="space-y-4"
+              >
+                {deliveryMethods.map(dm => (
+                  <div
+                    key={dm.id}
+                    className={`flex items-center space-x-3 p-4 rounded-lg border ${
+                      selectedDelivery === dm.id ? 'border-primary bg-aqua-50' : 'border-gray-200'
+                    }`}
+                  >
+                    <RadioGroupItem value={dm.id} id={dm.id} />
+                    <div className="flex flex-col">
+                      <div className="flex items-center font-medium">
+                        {dm.icon}
+                        {dm.name}
+                        <span className="ml-4 text-primary font-semibold">
+                          EGP {dm.price.toLocaleString(undefined, {minimumFractionDigits: 2})}
+                        </span>
+                      </div>
+                      <span className="text-sm text-gray-500">
+                        {dm.description}
+                      </span>
                     </div>
                   </div>
                 ))}
@@ -143,16 +203,16 @@ export default function Checkout() {
             <div className="space-y-3">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span>EGP 25,499.99</span>
+                <span>EGP {subtotal.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
               </div>
               <div className="flex justify-between">
                 <span>Shipping</span>
-                <span>EGP 150.00</span>
+                <span>EGP {shipping.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
               </div>
               <div className="border-t pt-3">
                 <div className="flex justify-between font-semibold">
                   <span>Total</span>
-                  <span>EGP 25,649.99</span>
+                  <span>EGP {total.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
                 </div>
               </div>
             </div>
