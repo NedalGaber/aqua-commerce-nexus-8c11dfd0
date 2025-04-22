@@ -1,10 +1,11 @@
+
 import { MainLayout } from "@/components/layouts/main-layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
-import { Minus, Plus, Trash2, CreditCard, Cash } from "lucide-react";
+import { Minus, Plus, Trash2, CreditCard, Wallet } from "lucide-react";
 import { useState } from "react";
 
 // Dummy cart data
@@ -154,7 +155,7 @@ const Cart = () => {
                   <div className="flex items-center space-x-3 p-3 rounded-lg border border-gray-200">
                     <RadioGroupItem value="cash" id="cash" />
                     <Label htmlFor="cash" className="flex items-center gap-2 cursor-pointer">
-                      <Cash className="h-4 w-4" />
+                      <Wallet className="h-4 w-4" />
                       Pay with Cash (+50 EGP)
                     </Label>
                   </div>
