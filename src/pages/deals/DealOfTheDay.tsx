@@ -1,4 +1,3 @@
-
 import { MainLayout } from "@/components/layouts/main-layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -65,9 +64,6 @@ const DealOfTheDay = () => {
                 <span className="text-yellow-300">DEAL</span> OF THE DAY
               </h1>
               <p className="text-xl mb-2">Don't miss it</p>
-              <button className="text-yellow-300 hover:underline text-sm">
-                See Deal of the Day FAQs
-              </button>
             </div>
             <div className="bg-white text-black px-4 py-2 rounded-lg">
               <div className="text-3xl font-bold text-center">
@@ -97,7 +93,7 @@ const DealOfTheDay = () => {
                     className="w-full h-48 object-contain"
                   />
                   <Badge className="absolute top-2 left-2 bg-red-600">
-                    Save ${deal.savings}
+                    Save EGP {deal.savings}
                   </Badge>
                 </div>
                 <div className="space-y-2">
@@ -125,10 +121,10 @@ const DealOfTheDay = () => {
                     <span className="text-sm text-gray-600">({deal.reviews})</span>
                   </div>
                   <div className="space-y-1">
-                    <div className="text-xl font-bold">${deal.price}</div>
+                    <div className="text-xl font-bold">EGP {deal.price}</div>
                     <div className="text-sm text-gray-600">
                       <span className="line-through">
-                        ${deal.originalPrice}
+                        EGP {deal.originalPrice}
                       </span>
                     </div>
                   </div>

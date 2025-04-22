@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { MainLayout } from "@/components/layouts/main-layout";
 import { Button } from "@/components/ui/button";
@@ -247,9 +246,13 @@ export default function ProductsView() {
                     </div>
                     <div className="flex flex-col mb-1">
                       <div className="flex items-end gap-2">
-                        <span className="text-2xl font-bold text-[#222]">${p.price.toLocaleString()}</span>
+                        <span className="text-2xl font-bold text-[#222]">
+                          EGP {p.price.toLocaleString()}
+                        </span>
                         {p.oldPrice && (
-                          <span className="text-xs text-gray-400 line-through">${p.oldPrice.toLocaleString()}</span>
+                          <span className="text-xs text-gray-400 line-through">
+                            EGP {p.oldPrice.toLocaleString()}
+                          </span>
                         )}
                       </div>
                       {p.promoText && (
@@ -259,21 +262,17 @@ export default function ProductsView() {
                       )}
                       {p.promoSave > 0 && (
                         <span className="text-xs text-[#b12704] font-medium">
-                          Save ${p.promoSave}
+                          Save EGP {p.promoSave}
                         </span>
                       )}
                     </div>
-                    {/* Add more info blocks if needed */}
                   </div>
                   <div className="p-3 mt-auto border-t flex flex-col gap-2">
                     <Button className="w-full bg-yellow-400 text-black font-semibold hover:bg-yellow-300 rounded shadow-none border-none">
                       Add to Cart
                     </Button>
                     <div className="flex items-center justify-between text-xs pt-2 text-gray-500">
-                      <label className="flex items-center gap-1 select-none">
-                        <input type="checkbox" className="accent-blue-500" />
-                        Compare
-                      </label>
+                      <div />
                       <label className="flex items-center gap-1 select-none">
                         <input type="checkbox" className="accent-blue-500" />
                         Save

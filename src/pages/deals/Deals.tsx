@@ -36,17 +36,17 @@ const Deals = () => {
                     />
                     <Badge className="absolute top-2 left-2 bg-red-600">
                       <Tag className="w-4 h-4 mr-1" />
-                      Save ${deal.savings}
+                      Save EGP {deal.savings}
                     </Badge>
                   </div>
                   <h3 className="font-semibold mb-2">{deal.title}</h3>
                   <p className="text-sm text-gray-600 mb-2">{deal.description}</p>
                   <div className="flex items-center gap-2">
                     <span className="text-lg font-bold text-red-600">
-                      ${deal.salePrice}
+                      EGP {deal.salePrice}
                     </span>
                     <span className="text-sm text-gray-500 line-through">
-                      ${deal.originalPrice}
+                      EGP {deal.originalPrice}
                     </span>
                   </div>
                 </CardContent>
