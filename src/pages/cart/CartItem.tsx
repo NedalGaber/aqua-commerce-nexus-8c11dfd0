@@ -73,4 +73,3 @@ const CartItem = ({ item }: CartItemProps) => {
 };
 
 export default CartItem;
-
