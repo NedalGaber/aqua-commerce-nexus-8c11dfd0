@@ -34,13 +34,6 @@ import Inventory from "./pages/admin/Inventory";
 import Users from "./pages/admin/Users";
 import Settings from "./pages/admin/Settings";
 
-// Delivery imports
-import Dashboard from "./pages/delivery/Dashboard";
-import Packages from "./pages/delivery/Packages";
-import DeliveryRoutes from "./pages/delivery/Routes";
-import History from "./pages/delivery/History";
-import DeliveryProfile from "./pages/delivery/Profile";
-
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
 import AddPayment from "./pages/payment/AddPayment";
@@ -108,13 +101,6 @@ const App = () => {
             <Route path="/admin/inventory" element={<Inventory />} />
             <Route path="/admin/users" element={<Users />} />
             <Route path="/admin/settings" element={<Settings />} />
-            
-            {/* Delivery Routes */}
-            <Route path="/delivery" element={<Dashboard />} />
-            <Route path="/delivery/packages" element={<Packages />} />
-            <Route path="/delivery/routes" element={<DeliveryRoutes />} />
-            <Route path="/delivery/history" element={<History />} />
-            <Route path="/delivery/profile" element={<DeliveryProfile />} />
             
             {/* Catch all route */}
             <Route path="*" element={<NotFound />} />
