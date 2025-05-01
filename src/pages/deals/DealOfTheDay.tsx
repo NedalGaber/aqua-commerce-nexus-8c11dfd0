@@ -1,3 +1,4 @@
+
 import { MainLayout } from "@/components/layouts/main-layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -61,7 +62,7 @@ const DealOfTheDay = () => {
           <div className="flex justify-between items-start mb-4">
             <div>
               <h1 className="text-5xl font-bold mb-2">
-                <span className="text-yellow-300">DEAL</span> OF THE DAY
+                <span className="text-[#fff100]">DEAL</span> OF THE DAY
               </h1>
               <p className="text-xl mb-2">Don't miss it</p>
             </div>
@@ -128,7 +129,7 @@ const DealOfTheDay = () => {
                       </span>
                     </div>
                   </div>
-                  <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black">
+                  <Button className="w-full bg-[#fff100] hover:bg-[#e6d800] text-black">
                     Add to Cart
                   </Button>
                   <Button variant="outline" className="w-full" asChild>

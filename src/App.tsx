@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,6 +17,12 @@ import Wishlist from "./pages/wishlist/Wishlist";
 import RecentlyViewed from "./pages/history/RecentlyViewed";
 import OrderTracking from "./pages/orders/OrderTracking";
 import Invoice from "./pages/orders/Invoice";
+
+// Legal pages
+import Privacy from "./pages/legal/Privacy";
+import Terms from "./pages/legal/Terms";
+import Accessibility from "./pages/legal/Accessibility";
+import InterestBasedAds from "./pages/legal/InterestBasedAds";
 
 // Admin imports
 import AdminDashboard from "./pages/admin/Dashboard";
@@ -75,6 +82,12 @@ const App = () => {
             <Route path="/order-tracking" element={<OrderTracking />} />
             <Route path="/invoice/:id" element={<Invoice />} />
             <Route path="/add-payment" element={<AddPayment />} />
+            
+            {/* Legal Routes */}
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/accessibility" element={<Accessibility />} />
+            <Route path="/interest-based-ads" element={<InterestBasedAds />} />
             
             {/* Deals Routes */}
             <Route path="/deals" element={<Deals />} />

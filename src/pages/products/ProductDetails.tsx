@@ -10,7 +10,7 @@ import { ProductOptions } from './ProductOptions';
 import { ProductTabs } from './ProductTabs';
 
 const sampleProduct = {
-  name: "Apple MacBook Pro 16” M2 Pro",
+  name: "Apple MacBook Pro 16" M2 Pro",
   price: 25499.99,
   originalPrice: 30999.99,
   sku: "MBPM2-16",
@@ -118,7 +118,7 @@ export default function ProductDetails() {
             <ProductOptions />
 
             <div className="flex space-x-4">
-              <Button size="lg" className="flex-1">
+              <Button size="lg" className="flex-1 bg-[#fff100] hover:bg-[#e6d800] text-black">
                 <ShoppingCart className="mr-2 h-5 w-5" />
                 Add to Cart
               </Button>

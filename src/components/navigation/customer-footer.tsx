@@ -8,7 +8,7 @@ export function CustomerFooter() {
   return (
     <footer className="bg-gray-100 border-t border-gray-200">
       {/* Main footer content */}
-      <div className="container mx-auto px-4 py-10">
+      <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <h3 className="font-semibold text-lg mb-4">Customer Support</h3>
@@ -24,6 +24,7 @@ export function CustomerFooter() {
                 <ul className="space-y-2">
                   <li><Link to="/order-tracking" className="text-gray-600 hover:text-aqua-600">Check Order Status</Link></li>
                   <li><Link to="/shipping" className="text-gray-600 hover:text-aqua-600">Shipping & Delivery</Link></li>
+                  <li><Link to="/about" className="text-gray-600 hover:text-aqua-600">About Us</Link></li>
                 </ul>
               </div>
             </div>
@@ -58,16 +59,12 @@ export function CustomerFooter() {
                 Sign Up
               </button>
             </div>
-            
-            <div className="mt-4">
-              <Link to="/about" className="text-gray-600 hover:text-aqua-600 block mb-2">About Us</Link>
-            </div>
           </div>
         </div>
       </div>
       
       {/* Bottom footer */}
-      <div className="border-t border-gray-300 py-6">
+      <div className="border-t border-gray-300 py-4">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="mb-4 md:mb-0">
@@ -80,7 +77,6 @@ export function CustomerFooter() {
               <Link to="/terms" className="text-sm text-gray-600 hover:text-aqua-600">Terms of Use</Link>
               <Link to="/accessibility" className="text-sm text-gray-600 hover:text-aqua-600">Accessibility</Link>
               <Link to="/interest-based-ads" className="text-sm text-gray-600 hover:text-aqua-600">Interest-Based Ads</Link>
-              <Link to="/ca-privacy" className="text-sm text-gray-600 hover:text-aqua-600">CA Privacy Rights</Link>
             </div>
           </div>
         </div>

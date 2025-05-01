@@ -28,7 +28,7 @@ export default function Wishlist() {
                   <span className="ml-2 text-sm text-gray-500 line-through">EGP 30,999.99</span>
                 </div>
                 <div className="space-y-2">
-                  <Button className="w-full">
+                  <Button className="w-full bg-[#fff100] hover:bg-[#e6d800] text-black">
                     <ShoppingCart className="mr-2 h-4 w-4" />
                     Add to Cart
                   </Button>
