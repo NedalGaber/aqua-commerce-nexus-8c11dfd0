@@ -1,3 +1,4 @@
+
 import { MainLayout } from "@/components/layouts/main-layout";
 import { Button } from "@/components/ui/button";
 import { 
@@ -48,7 +49,7 @@ const Index = () => {
                   />
                   {deal.badgeText && (
                     <div className="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
-                      {deal.badgeText}
+                      {deal.badgeText.replace('$', 'EGP ')}
                     </div>
                   )}
                 </div>
@@ -57,10 +58,10 @@ const Index = () => {
                   <p className="text-gray-800 mb-2">{deal.subtitle}</p>
                   {deal.price && (
                     <div className="flex items-baseline">
-                      <span className="text-xl font-bold">EGP {(Number(deal.price.replace('$', '')) * 30).toFixed(2)}</span>
+                      <span className="text-xl font-bold">EGP {(Number(deal.price.replace('$', '')) * 30).toFixed(0)}</span>
                       {deal.originalPrice && (
                         <span className="ml-2 text-gray-500 line-through">
-                          EGP {(Number(deal.originalPrice.replace('$', '')) * 30).toFixed(2)}
+                          EGP {(Number(deal.originalPrice.replace('$', '')) * 30).toFixed(0)}
                         </span>
                       )}
                     </div>
@@ -114,10 +115,10 @@ const Index = () => {
               <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-all duration-300">
                 <img src="/placeholder.svg" alt="Product" className="h-32 w-full object-contain mb-2" />
                 <div className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded mb-2 inline-block">
-                  Save ${(item * 50)}
+                  Save EGP {(item * 50 * 30)}
                 </div>
                 <p className="text-sm text-gray-800 mb-1 line-clamp-2">Product Name Example</p>
-                <p className="font-bold">${(199 - item * 10).toFixed(2)}</p>
+                <p className="font-bold">EGP {((199 - item * 10) * 30).toFixed(0)}</p>
               </div>
             </Link>
           ))}
@@ -140,7 +141,7 @@ const Index = () => {
                 </svg>
               </div>
               <h3 className="text-lg font-bold mb-2">Free Shipping</h3>
-              <p className="text-gray-600">On orders over $35</p>
+              <p className="text-gray-600">On orders over EGP 1050</p>
             </div>
             
             <div className="bg-white p-6 rounded-lg border border-gray-200 text-center">
