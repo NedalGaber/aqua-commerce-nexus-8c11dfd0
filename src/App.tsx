@@ -31,7 +31,7 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import Products from "./pages/admin/Products";
 import Orders from "./pages/admin/Orders";
 import Inventory from "./pages/admin/Inventory";
-import UsersPage from "./pages/admin/UsersPage";
+import UsersPage from "./pages/admin/Users"; // Fixed this import path
 import Settings from "./pages/admin/Settings";
 import AdminSignIn from "./pages/admin/SignIn";
 import AdminReturns from "./pages/admin/orders/Returns";

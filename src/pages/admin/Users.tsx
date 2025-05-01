@@ -142,6 +142,7 @@ const statusStyles = {
   suspended: "bg-red-100 text-red-800",
 };
 
+// Renamed component from 'Users' to 'UsersPage' to avoid conflict with the lucide-react icon
 const UsersPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentTab, setCurrentTab] = useState("all");
