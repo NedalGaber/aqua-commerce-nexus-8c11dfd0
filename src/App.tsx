@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import React from "react";
 
 import Index from "./pages/Index";
@@ -31,8 +31,20 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import Products from "./pages/admin/Products";
 import Orders from "./pages/admin/Orders";
 import Inventory from "./pages/admin/Inventory";
-import UsersPage from "./pages/admin/Users";
+import UsersPage from "./pages/admin/UsersPage";
 import Settings from "./pages/admin/Settings";
+import AdminSignIn from "./pages/admin/SignIn";
+import AdminReturns from "./pages/admin/orders/Returns";
+import AddProduct from "./pages/admin/products/AddProduct";
+import Categories from "./pages/admin/products/Categories";
+import Stock from "./pages/admin/inventory/Stock";
+import Warehouses from "./pages/admin/inventory/Warehouses";
+import Alerts from "./pages/admin/inventory/Alerts";
+import Vendors from "./pages/admin/Vendors";
+import Sales from "./pages/admin/analytics/Sales";
+import InventoryAnalytics from "./pages/admin/analytics/InventoryAnalytics";
+import Reports from "./pages/admin/analytics/Reports";
+import Notifications from "./pages/admin/Notifications";
 
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
@@ -62,6 +74,7 @@ const App = () => {
             {/* Auth Routes */}
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/admin/signin" element={<AdminSignIn />} />
             
             {/* Customer Routes */}
             <Route path="/" element={<Index />} />
@@ -97,9 +110,20 @@ const App = () => {
             {/* Admin Routes */}
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/products" element={<Products />} />
+            <Route path="/admin/products/add" element={<AddProduct />} />
+            <Route path="/admin/products/categories" element={<Categories />} />
             <Route path="/admin/orders" element={<Orders />} />
+            <Route path="/admin/orders/returns" element={<AdminReturns />} />
             <Route path="/admin/inventory" element={<Inventory />} />
+            <Route path="/admin/inventory/stock" element={<Stock />} />
+            <Route path="/admin/inventory/warehouses" element={<Warehouses />} />
+            <Route path="/admin/inventory/alerts" element={<Alerts />} />
+            <Route path="/admin/vendors" element={<Vendors />} />
             <Route path="/admin/users" element={<UsersPage />} />
+            <Route path="/admin/analytics/sales" element={<Sales />} />
+            <Route path="/admin/analytics/inventory" element={<InventoryAnalytics />} />
+            <Route path="/admin/analytics/reports" element={<Reports />} />
+            <Route path="/admin/notifications" element={<Notifications />} />
             <Route path="/admin/settings" element={<Settings />} />
             
             {/* Catch all route */}

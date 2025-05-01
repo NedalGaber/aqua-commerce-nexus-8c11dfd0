@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AdminLayout } from "@/components/layouts/admin-layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,15 +19,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import {
   Select,
   SelectContent,
   SelectItem,
@@ -34,7 +26,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Search, PlusCircle, Package, Pencil, Trash2, ImagePlus } from "lucide-react";
+import { Search, PlusCircle, Package, Pencil, Trash2 } from "lucide-react";
 import {
   Pagination,
   PaginationContent,
@@ -139,6 +131,7 @@ const formatStatus = (status) => {
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentCategory, setCurrentCategory] = useState("all");
+  const navigate = useNavigate();
   
   // Filter products based on search term and category
   const filteredProducts = mockProducts.filter(product => {
@@ -162,93 +155,29 @@ const Products = () => {
   // Extract unique categories
   const categories = ["All", ...new Set(mockProducts.map(p => p.category))];
 
+  const handleAddProductClick = () => {
+    navigate('/admin/products/add');
+  };
+
+  const handleEditProduct = (productId) => {
+    // In a real app, navigate to edit page with the product ID
+    console.log("Edit product:", productId);
+  };
+
+  const handleDeleteProduct = (productId) => {
+    // In a real app, show confirmation dialog and delete
+    console.log("Delete product:", productId);
+  };
+
   return (
     <AdminLayout>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold">Products Management</h1>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button>
-                <PlusCircle className="mr-2 h-4 w-4" />
-                Add New Product
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[600px]">
-              <DialogHeader>
-                <DialogTitle>Add New Product</DialogTitle>
-                <DialogDescription>
-                  Fill in the details to add a new product to your inventory.
-                </DialogDescription>
-              </DialogHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <label htmlFor="product-name" className="text-right">
-                    Product Name
-                  </label>
-                  <Input id="product-name" className="col-span-3" />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <label htmlFor="product-sku" className="text-right">
-                    SKU
-                  </label>
-                  <Input id="product-sku" className="col-span-3" />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <label htmlFor="category" className="text-right">
-                    Category
-                  </label>
-                  <Select>
-                    <SelectTrigger className="col-span-3">
-                      <SelectValue placeholder="Select a category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {categories.filter(c => c !== "All").map((category) => (
-                        <SelectItem key={category} value={category.toLowerCase()}>
-                          {category}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <label htmlFor="price" className="text-right">
-                    Price
-                  </label>
-                  <div className="relative col-span-3">
-                    <span className="absolute left-3 top-1/2 transform -translate-y-1/2">$</span>
-                    <Input id="price" type="number" step="0.01" className="pl-7" />
-                  </div>
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <label htmlFor="stock" className="text-right">
-                    Stock Quantity
-                  </label>
-                  <Input id="stock" type="number" className="col-span-3" />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <label htmlFor="image" className="text-right">
-                    Product Image
-                  </label>
-                  <div className="col-span-3">
-                    <div className="border-2 border-dashed border-gray-300 rounded-md p-6 flex flex-col items-center justify-center">
-                      <ImagePlus className="h-10 w-10 text-gray-400 mb-2" />
-                      <div className="text-sm text-gray-500">
-                        Drag and drop an image or <span className="text-blue-500 cursor-pointer">browse</span>
-                      </div>
-                      <div className="text-xs text-gray-400 mt-1">
-                        PNG, JPG, GIF up to 10MB
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <DialogFooter>
-                <Button variant="outline">Cancel</Button>
-                <Button type="submit">Add Product</Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+          <Button onClick={handleAddProductClick}>
+            <PlusCircle className="mr-2 h-4 w-4" />
+            Add New Product
+          </Button>
         </div>
         
         {/* Product metrics cards */}
@@ -376,10 +305,15 @@ const Products = () => {
                     </TableCell>
                     <TableCell>
                       <div className="flex space-x-2">
-                        <Button variant="ghost" size="sm">
+                        <Button variant="ghost" size="sm" onClick={() => handleEditProduct(product.id)}>
                           <Pencil className="h-4 w-4" />
                         </Button>
-                        <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-700 hover:bg-red-50">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                          onClick={() => handleDeleteProduct(product.id)}
+                        >
                           <Trash2 className="h-4 w-4" />
                         </Button>
                       </div>
