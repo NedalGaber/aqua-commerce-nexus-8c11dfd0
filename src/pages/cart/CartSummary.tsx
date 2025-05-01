@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { CreditCard, Wallet } from "lucide-react";
+import { CreditCard, Wallet, Truck, Store } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface CartSummaryProps {
   subtotal: number;
   discount: number;
-  shipping: number;
   onPaymentMethodChange?: (method: "card" | "cash") => void;
   paymentMethod: "card" | "cash";
 }
@@ -17,16 +17,41 @@ interface CartSummaryProps {
 const CartSummary = ({
   subtotal,
   discount,
-  shipping,
   paymentMethod,
   onPaymentMethodChange
 }: CartSummaryProps) => {
+  const [deliveryMethod, setDeliveryMethod] = useState<"delivery" | "pickup">("delivery");
   const cashFee = paymentMethod === "cash" ? 50 : 0;
-  const total = subtotal - discount + shipping + cashFee;
+  const total = subtotal - discount + cashFee;
 
   return (
     <div className="bg-white rounded-lg shadow-sm p-6">
       <h2 className="text-lg font-semibold mb-4">Summary</h2>
+      
+      {/* Delivery Method Selection */}
+      <div className="mb-6">
+        <h3 className="text-sm font-medium mb-3">Delivery Method</h3>
+        <RadioGroup
+          value={deliveryMethod}
+          onValueChange={(value: "delivery" | "pickup") => setDeliveryMethod(value)}
+          className="space-y-3"
+        >
+          <div className="flex items-center space-x-3 p-3 rounded-lg border border-gray-200">
+            <RadioGroupItem value="delivery" id="delivery" />
+            <Label htmlFor="delivery" className="flex items-center gap-2 cursor-pointer">
+              <Truck className="h-4 w-4" />
+              Delivery to Address
+            </Label>
+          </div>
+          <div className="flex items-center space-x-3 p-3 rounded-lg border border-gray-200">
+            <RadioGroupItem value="pickup" id="pickup" />
+            <Label htmlFor="pickup" className="flex items-center gap-2 cursor-pointer">
+              <Store className="h-4 w-4" />
+              Pickup from Store
+            </Label>
+          </div>
+        </RadioGroup>
+      </div>
 
       {/* Payment Method Selection */}
       <div className="mb-6">
@@ -73,10 +98,6 @@ const CartSummary = ({
           <span className="text-gray-600">Subtotal :</span>
           <span className="font-medium">{(subtotal - discount + cashFee).toFixed(0).toLocaleString()} EGP</span>
         </div>
-        <div className="flex justify-between">
-          <span className="text-gray-600">Shipping Cost :</span>
-          <span className="font-medium">{shipping.toLocaleString()} EGP</span>
-        </div>
       </div>
 
       {/* Voucher */}
@@ -92,9 +113,11 @@ const CartSummary = ({
       </div>
 
       {/* Checkout Button */}
-      <Button size="lg" className="w-full bg-aqua-600 hover:bg-aqua-700">
-        Proceed to checkout &rarr;
-      </Button>
+      <Link to="/checkout" state={{ deliveryMethod }}>
+        <Button size="lg" className="w-full bg-aqua-600 hover:bg-aqua-700">
+          Proceed to checkout &rarr;
+        </Button>
+      </Link>
     </div>
   );
 };
