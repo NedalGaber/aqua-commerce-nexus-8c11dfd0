@@ -31,7 +31,7 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import Products from "./pages/admin/Products";
 import Orders from "./pages/admin/Orders";
 import Inventory from "./pages/admin/Inventory";
-import Users from "./pages/admin/Users";
+import UsersPage from "./pages/admin/Users";
 import Settings from "./pages/admin/Settings";
 
 import SignIn from "./pages/auth/SignIn";
@@ -99,7 +99,7 @@ const App = () => {
             <Route path="/admin/products" element={<Products />} />
             <Route path="/admin/orders" element={<Orders />} />
             <Route path="/admin/inventory" element={<Inventory />} />
-            <Route path="/admin/users" element={<Users />} />
+            <Route path="/admin/users" element={<UsersPage />} />
             <Route path="/admin/settings" element={<Settings />} />
             
             {/* Catch all route */}

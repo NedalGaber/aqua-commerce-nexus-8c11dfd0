@@ -51,7 +51,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Badge } from "@/components/ui/badge";
-import { Search, UserPlus, User, Shield, Users, ShieldCheck, ShieldX } from "lucide-react";
+import { Search, UserPlus, User, Shield, UsersIcon, ShieldCheck, ShieldX } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 // Mock data for users
@@ -142,7 +142,7 @@ const statusStyles = {
   suspended: "bg-red-100 text-red-800",
 };
 
-const Users = () => {
+const UsersPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentTab, setCurrentTab] = useState("all");
   
@@ -231,7 +231,7 @@ const Users = () => {
                 <p className="text-sm text-gray-500">Total Users</p>
                 <p className="text-2xl font-bold">{metrics.total}</p>
               </div>
-              <Users className="h-8 w-8 text-gray-400" />
+              <UsersIcon className="h-8 w-8 text-gray-400" />
             </CardContent>
           </Card>
           <Card>
@@ -267,7 +267,7 @@ const Users = () => {
                 <p className="text-sm text-gray-500">Customers</p>
                 <p className="text-2xl font-bold">{metrics.customers}</p>
               </div>
-              <Users className="h-8 w-8 text-gray-400" />
+              <UsersIcon className="h-8 w-8 text-gray-400" />
             </CardContent>
           </Card>
         </div>
@@ -410,4 +410,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default UsersPage;
