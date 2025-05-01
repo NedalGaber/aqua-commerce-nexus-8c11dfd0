@@ -1,18 +1,7 @@
-
 import React, { useEffect } from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-
-interface Town {
-  id: string;
-  name: string;
-}
-
-interface PickupLocation {
-  id: string;
-  name: string;
-  address: string;
-}
+import { Town, PickupLocation } from "@/types/checkout";
 
 interface PickupLocationSelectionProps {
   towns: Town[];

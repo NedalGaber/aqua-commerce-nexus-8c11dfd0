@@ -1,15 +1,7 @@
-
 import React from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Truck } from "lucide-react";
-
-interface DeliveryMethod {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  iconType: string;
-}
+import { DeliveryMethod } from "@/types/checkout";
 
 interface DeliveryMethodSelectionProps {
   deliveryMethods: DeliveryMethod[];

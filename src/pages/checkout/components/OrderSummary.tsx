@@ -2,12 +2,13 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { CreditCard } from "lucide-react";
+import { DeliveryOption } from "@/types/checkout";
 
 interface OrderSummaryProps {
   subtotal: number;
   shipping: number;
   total: number;
-  deliveryMethod: "delivery" | "pickup";
+  deliveryMethod: DeliveryOption;
 }
 
 const OrderSummary = ({ subtotal, shipping, total, deliveryMethod }: OrderSummaryProps) => {
