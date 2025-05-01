@@ -31,7 +31,7 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import Products from "./pages/admin/Products";
 import Orders from "./pages/admin/Orders";
 import Inventory from "./pages/admin/Inventory";
-import UsersPage from "./pages/admin/Users"; // Fixed this import path
+import UsersPage from "./pages/admin/Users";
 import Settings from "./pages/admin/Settings";
 import AdminSignIn from "./pages/admin/SignIn";
 import AdminReturns from "./pages/admin/orders/Returns";
@@ -45,6 +45,7 @@ import Sales from "./pages/admin/analytics/Sales";
 import InventoryAnalytics from "./pages/admin/analytics/InventoryAnalytics";
 import Reports from "./pages/admin/analytics/Reports";
 import Notifications from "./pages/admin/Notifications";
+import AdminProfile from "./pages/admin/Profile";
 
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
@@ -125,6 +126,7 @@ const App = () => {
             <Route path="/admin/analytics/reports" element={<Reports />} />
             <Route path="/admin/notifications" element={<Notifications />} />
             <Route path="/admin/settings" element={<Settings />} />
+            <Route path="/admin/profile" element={<AdminProfile />} />
             
             {/* Catch all route */}
             <Route path="*" element={<NotFound />} />

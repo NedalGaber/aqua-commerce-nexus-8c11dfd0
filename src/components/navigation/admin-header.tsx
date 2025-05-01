@@ -1,7 +1,8 @@
 
 import * as React from "react";
-import { Bell, Mail, Search, Settings, Menu } from "lucide-react";
+import { Bell, Settings, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,14 +19,6 @@ export function AdminHeader() {
         <Button variant="ghost" size="icon" className="mr-2 lg:hidden">
           <Menu className="h-6 w-6" />
         </Button>
-        <div className="relative w-64 hidden md:block">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
-          <input
-            type="search"
-            placeholder="Search..."
-            className="pl-10 pr-4 py-2 border border-gray-300 rounded-full w-full focus:outline-none focus:ring-2 focus:ring-aqua-500"
-          />
-        </div>
       </div>
 
       <div className="flex items-center space-x-4">
@@ -63,41 +56,8 @@ export function AdminHeader() {
               </DropdownMenuItem>
             </div>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer py-2 justify-center font-medium text-aqua-600">
-              View all notifications
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="relative">
-              <Mail className="h-5 w-5" />
-              <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-80">
-            <DropdownMenuLabel>Messages</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <div className="max-h-96 overflow-auto">
-              <DropdownMenuItem className="cursor-pointer p-4">
-                <div>
-                  <p className="font-medium">Warehouse Manager</p>
-                  <p className="text-sm text-gray-500">Shipment received for order #12339</p>
-                  <p className="text-xs text-gray-400 mt-1">20 minutes ago</p>
-                </div>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer p-4">
-                <div>
-                  <p className="font-medium">Support Team</p>
-                  <p className="text-sm text-gray-500">Customer feedback needs review</p>
-                  <p className="text-xs text-gray-400 mt-1">2 hours ago</p>
-                </div>
-              </DropdownMenuItem>
-            </div>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer py-2 justify-center font-medium text-aqua-600">
-              View all messages
+            <DropdownMenuItem className="cursor-pointer py-2 justify-center font-medium text-aqua-600" asChild>
+              <Link to="/admin/notifications">View all notifications</Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -112,12 +72,18 @@ export function AdminHeader() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>
-              <Settings className="h-4 w-4 mr-2" /> Settings
+            <DropdownMenuItem asChild>
+              <Link to="/admin/profile">Profile</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link to="/admin/settings">
+                <Settings className="h-4 w-4 mr-2" /> Settings
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link to="/admin/signin">Logout</Link>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

@@ -37,9 +37,12 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { Plus } from "lucide-react";
+import { toast } from "@/components/ui/use-toast";
 
 const Settings = () => {
   const [isSaving, setIsSaving] = useState(false);
+  const [isConnecting, setIsConnecting] = useState(false);
+  const [isConfiguring, setIsConfiguring] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,7 +51,37 @@ const Settings = () => {
     // Simulate API call
     setTimeout(() => {
       setIsSaving(false);
+      toast({
+        title: "Settings saved",
+        description: "Your settings have been saved successfully.",
+      });
     }, 1000);
+  };
+
+  const handleConnect = (service: string) => {
+    setIsConnecting(true);
+    
+    // Simulate connection
+    setTimeout(() => {
+      setIsConnecting(false);
+      toast({
+        title: `Connected to ${service}`,
+        description: "The service has been connected successfully.",
+      });
+    }, 1500);
+  };
+  
+  const handleConfigure = (service: string) => {
+    setIsConfiguring(true);
+    
+    // Simulate configuration
+    setTimeout(() => {
+      setIsConfiguring(false);
+      toast({
+        title: `${service} configured`,
+        description: "Your configuration has been saved.",
+      });
+    }, 1500);
   };
   
   return (
@@ -66,7 +99,6 @@ const Settings = () => {
             <TabsTrigger value="general">General</TabsTrigger>
             <TabsTrigger value="notifications">Notifications</TabsTrigger>
             <TabsTrigger value="security">Security</TabsTrigger>
-            <TabsTrigger value="billing">Billing</TabsTrigger>
             <TabsTrigger value="integrations">Integrations</TabsTrigger>
           </TabsList>
           
@@ -405,82 +437,6 @@ const Settings = () => {
             </Card>
           </TabsContent>
           
-          <TabsContent value="billing" className="space-y-4">
-            <Card>
-              <CardHeader>
-                <CardTitle>Billing Settings</CardTitle>
-                <CardDescription>
-                  Manage your subscription and billing preferences.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="bg-blue-50 text-blue-700 p-4 rounded-md">
-                  <p>You are currently on the <strong>Pro Plan</strong> ($49/month).</p>
-                </div>
-                
-                <div className="space-y-4">
-                  <h3 className="text-lg font-medium">Payment Method</h3>
-                  <Separator />
-                  
-                  <div className="flex items-center justify-between p-4 border rounded-md">
-                    <div className="flex items-center space-x-4">
-                      <div className="h-10 w-14 bg-gray-100 rounded flex items-center justify-center text-gray-600 font-semibold">VISA</div>
-                      <div>
-                        <p className="font-medium">Visa ending in 4242</p>
-                        <p className="text-sm text-gray-500">Expires 12/2024</p>
-                      </div>
-                    </div>
-                    <Button variant="outline" size="sm">Change</Button>
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <Label>Auto-renew Subscription</Label>
-                      <p className="text-sm text-gray-500">Automatically renew your subscription.</p>
-                    </div>
-                    <Switch defaultChecked />
-                  </div>
-                </div>
-                
-                <div className="space-y-4 mt-6">
-                  <h3 className="text-lg font-medium">Billing Information</h3>
-                  <Separator />
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="billingName">Billing Name</Label>
-                      <Input id="billingName" defaultValue="Aqua Commerce LLC" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="billingEmail">Billing Email</Label>
-                      <Input id="billingEmail" defaultValue="billing@aquacommerce.com" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="billingAddress">Billing Address</Label>
-                      <Input id="billingAddress" defaultValue="123 Commerce St, Suite 400" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="billingCity">City</Label>
-                      <Input id="billingCity" defaultValue="San Francisco" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="billingState">State</Label>
-                      <Input id="billingState" defaultValue="California" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="billingZip">Zip Code</Label>
-                      <Input id="billingZip" defaultValue="94105" />
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button variant="outline">Download Invoices</Button>
-                <Button variant="destructive">Cancel Subscription</Button>
-              </CardFooter>
-            </Card>
-          </TabsContent>
-          
           <TabsContent value="integrations" className="space-y-4">
             <Card>
               <CardHeader>
@@ -507,7 +463,14 @@ const Settings = () => {
                       </div>
                       <div className="flex items-center space-x-2">
                         <Switch defaultChecked />
-                        <Button variant="ghost" size="sm">Configure</Button>
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => handleConfigure("Stripe")}
+                          disabled={isConfiguring}
+                        >
+                          {isConfiguring ? "Configuring..." : "Configure"}
+                        </Button>
                       </div>
                     </div>
                     
@@ -523,7 +486,14 @@ const Settings = () => {
                       </div>
                       <div className="flex items-center space-x-2">
                         <Switch defaultChecked />
-                        <Button variant="ghost" size="sm">Configure</Button>
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => handleConfigure("PayPal")}
+                          disabled={isConfiguring}
+                        >
+                          {isConfiguring ? "Configuring..." : "Configure"}
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -546,7 +516,14 @@ const Settings = () => {
                       </div>
                       <div className="flex items-center space-x-2">
                         <Switch />
-                        <Button variant="ghost" size="sm">Connect</Button>
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => handleConnect("ShipStation")}
+                          disabled={isConnecting}
+                        >
+                          {isConnecting ? "Connecting..." : "Connect"}
+                        </Button>
                       </div>
                     </div>
                     
@@ -562,7 +539,14 @@ const Settings = () => {
                       </div>
                       <div className="flex items-center space-x-2">
                         <Switch />
-                        <Button variant="ghost" size="sm">Connect</Button>
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => handleConnect("ShipBob")}
+                          disabled={isConnecting}
+                        >
+                          {isConnecting ? "Connecting..." : "Connect"}
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -585,7 +569,14 @@ const Settings = () => {
                       </div>
                       <div className="flex items-center space-x-2">
                         <Switch defaultChecked />
-                        <Button variant="ghost" size="sm">Configure</Button>
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => handleConfigure("Google Analytics")}
+                          disabled={isConfiguring}
+                        >
+                          {isConfiguring ? "Configuring..." : "Configure"}
+                        </Button>
                       </div>
                     </div>
                     
@@ -601,14 +592,26 @@ const Settings = () => {
                       </div>
                       <div className="flex items-center space-x-2">
                         <Switch />
-                        <Button variant="ghost" size="sm">Connect</Button>
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => handleConnect("Mailchimp")}
+                          disabled={isConnecting}
+                        >
+                          {isConnecting ? "Connecting..." : "Connect"}
+                        </Button>
                       </div>
                     </div>
                   </div>
                 </div>
               </CardContent>
               <CardFooter>
-                <Button className="ml-auto">
+                <Button className="ml-auto" onClick={() => {
+                  toast({
+                    title: "Adding new integration",
+                    description: "Opening integration marketplace...",
+                  });
+                }}>
                   <Plus className="mr-2 h-4 w-4" />
                   Add New Integration
                 </Button>
