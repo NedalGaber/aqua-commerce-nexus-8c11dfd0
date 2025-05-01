@@ -1,13 +1,14 @@
 
 import React from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Truck } from "lucide-react";
 
 interface DeliveryMethod {
   id: string;
   name: string;
   description: string;
   price: number;
-  icon: React.ReactNode;
+  iconType: string;
 }
 
 interface DeliveryMethodSelectionProps {
@@ -21,6 +22,16 @@ const DeliveryMethodSelection = ({
   selectedDelivery,
   setSelectedDelivery,
 }: DeliveryMethodSelectionProps) => {
+  // Function to render the appropriate icon based on iconType
+  const renderIcon = (iconType: string) => {
+    switch (iconType) {
+      case "truck":
+        return <Truck className="h-5 w-5 mr-2" />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm space-y-4">
       <div className="flex justify-between items-center">
@@ -41,7 +52,7 @@ const DeliveryMethodSelection = ({
             <RadioGroupItem value={dm.id} id={dm.id} />
             <div className="flex flex-col">
               <div className="flex items-center font-medium">
-                {dm.icon}
+                {renderIcon(dm.iconType)}
                 {dm.name}
                 <span className="ml-4 text-primary font-semibold">
                   {dm.price === 0

@@ -1,8 +1,6 @@
 
 import { Address } from "@/types";
 import { SavedPaymentMethod } from "@/types/checkout";
-import { Truck } from "lucide-react";
-import React from "react";
 
 // Mock data for addresses
 export const mockAddresses: Address[] = [
@@ -73,13 +71,13 @@ export const deliveryMethods = [
     name: "Regular Delivery",
     description: "Delivered in 3-5 business days.",
     price: 150,
-    icon: <Truck className="h-5 w-5 mr-2" />,
+    iconType: "truck",
   },
   {
     id: "express",
     name: "Express Delivery",
     description: "Delivered in 1-2 business days.",
     price: 300,
-    icon: <Truck className="h-5 w-5 mr-2" />,
+    iconType: "truck",
   },
 ];
