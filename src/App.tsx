@@ -16,6 +16,8 @@ import Profile from "./pages/profile/Profile";
 import Wishlist from "./pages/wishlist/Wishlist";
 import RecentlyViewed from "./pages/history/RecentlyViewed";
 import OrderTracking from "./pages/orders/OrderTracking";
+import OrdersAndInvoices from "./pages/orders/OrdersAndInvoices";
+import Returns from "./pages/orders/Returns";
 import Invoice from "./pages/orders/Invoice";
 
 // Legal pages
@@ -79,7 +81,9 @@ const App = () => {
             <Route path="/profile/add-address" element={<AddAddress />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/recently-viewed" element={<RecentlyViewed />} />
+            <Route path="/orders-and-invoices" element={<OrdersAndInvoices />} />
             <Route path="/order-tracking" element={<OrderTracking />} />
+            <Route path="/returns" element={<Returns />} />
             <Route path="/invoice/:id" element={<Invoice />} />
             <Route path="/add-payment" element={<AddPayment />} />
             

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { MainLayout } from "@/components/layouts/main-layout";
 import { Button } from "@/components/ui/button";
@@ -71,8 +72,8 @@ export default function Profile() {
               </div>
               <div className="flex mt-2">
                 <Button asChild className="w-full" variant="outline">
-                  <Link to="/invoice/12345">
-                    📄 View My Invoices
+                  <Link to="/orders-and-invoices">
+                    📄 View My Orders and Invoices
                   </Link>
                 </Button>
               </div>

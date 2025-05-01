@@ -8,10 +8,10 @@ export function CustomerFooter() {
   return (
     <footer className="bg-gray-100 border-t border-gray-200">
       {/* Main footer content */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="container mx-auto px-4 py-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h3 className="font-semibold text-lg mb-4">Customer Support</h3>
+            <h3 className="font-semibold text-lg mb-3">Customer Support</h3>
             <div className="grid grid-cols-2 gap-2">
               <div>
                 <ul className="space-y-2">
@@ -31,8 +31,8 @@ export function CustomerFooter() {
           </div>
           
           <div>
-            <h3 className="font-semibold text-lg mb-4">Connect With Us</h3>
-            <div className="flex space-x-4 mb-4">
+            <h3 className="font-semibold text-lg mb-3">Connect With Us</h3>
+            <div className="flex space-x-4 mb-3">
               <a href="#" className="text-gray-600 hover:text-aqua-600">
                 <Facebook className="h-6 w-6" />
               </a>
@@ -64,10 +64,10 @@ export function CustomerFooter() {
       </div>
       
       {/* Bottom footer */}
-      <div className="border-t border-gray-300 py-4">
+      <div className="border-t border-gray-300 py-3">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="mb-4 md:mb-0">
+            <div className="mb-3 md:mb-0">
               <Logo className="mb-2" />
               <p className="text-sm text-gray-600">© {new Date().getFullYear()} TechXpress Inc. All rights reserved.</p>
             </div>
