@@ -10,7 +10,7 @@ import { ProductOptions } from './ProductOptions';
 import { ProductTabs } from './ProductTabs';
 
 const sampleProduct = {
-  name: "Apple MacBook Pro 16" M2 Pro",
+  name: "Apple MacBook Pro 16\" M2 Pro",
   price: 25499.99,
   originalPrice: 30999.99,
   sku: "MBPM2-16",
